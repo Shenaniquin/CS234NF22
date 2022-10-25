@@ -52,7 +52,7 @@ namespace MMABooksTests
             c.UnitPrice = 56.50m;
             c.OnHandQuantity = 5136;
             Product oldC = new Product();
-            oldC.ProductCode = "CRFC";
+            oldC.ProductCode = "CS10";
             oldC.Description = "Murach's CICS Desk Reference";
             oldC.UnitPrice = 50.00m;
             oldC.OnHandQuantity = 1865;

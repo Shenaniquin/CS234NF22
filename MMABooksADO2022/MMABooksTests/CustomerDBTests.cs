@@ -41,10 +41,10 @@ namespace MMABooksTests
             c.Address = "101 Main Street";
             c.City = "Orlando";
             c.State = "FL";
-            c.ZipCode = "10001";
+            c.ZipCode = "10101";
 
             bool custDelete = CustomerDB.DeleteCustomer(c);
-            Assert.AreEqual(custDelete, false);
+            Assert.AreEqual(custDelete, true);
         }
         [Test]
         public void TestUpdateCustomer()
@@ -54,16 +54,16 @@ namespace MMABooksTests
             c.Address = "100 Main Street";
             c.City = "Savanna";
             c.State = "GA";
-            c.ZipCode = "10101";
+            c.ZipCode = "10001";
             Customer oldC = new Customer();
             oldC.Name = "Mickey Mouse";
             oldC.Address = "101 Main Street";
             oldC.City = "Orlando";
             oldC.State = "FL";
-            oldC.ZipCode = "10001";
+            oldC.ZipCode = "10101";
 
             bool custUpdate = CustomerDB.UpdateCustomer(oldC,c);
-            Assert.AreEqual(custUpdate, false);
+            Assert.AreEqual(custUpdate, true);
         }
     }
 }

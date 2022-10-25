@@ -100,8 +100,7 @@ namespace MMABooksDBClasses
             MySqlConnection connection = MMABooksDB.GetConnection();
             string deleteStatement =
                 "DELETE FROM Customers " +
-                "WHERE CustomerID = @CustomerID " +
-                "AND Name = @Name " +
+                "WHERE Name = @Name " +
                 "AND Address = @Address " +
                 "AND City = @City " +
                 "AND State = @State " +
@@ -109,7 +108,6 @@ namespace MMABooksDBClasses
             // set up the command object
             MySqlCommand deleteCommand =
                 new MySqlCommand(deleteStatement, connection);
-            deleteCommand.Parameters.AddWithValue("@CustomerID", customer.CustomerID);
             deleteCommand.Parameters.AddWithValue("@Name", customer.Name);
             deleteCommand.Parameters.AddWithValue("@Address", customer.Address);
             deleteCommand.Parameters.AddWithValue("@City", customer.City);
@@ -120,7 +118,7 @@ namespace MMABooksDBClasses
                 // open the connection
                 connection.Open();
                 // execute the command
-                if (deleteCommand.ExecuteNonQuery() == 1)
+                if(deleteCommand.ExecuteNonQuery() == 1)
                 { return true; }
                 // if the number of records returned = 1, return true otherwise return false
             }
@@ -150,8 +148,7 @@ namespace MMABooksDBClasses
                 "City = @NewCity, " +
                 "State = @NewState, " +
                 "ZipCode = @NewZipCode " +
-                "WHERE CustomerID = @OldCustomerID " +
-                "AND Name = @OldName " +
+                "WHERE Name = @OldName " +
                 "AND Address = @OldAddress " +
                 "AND City = @OldCity " +
                 "AND State = @OldState " +
@@ -159,25 +156,23 @@ namespace MMABooksDBClasses
             // setup the command object
             MySqlCommand updateCommand =
                 new MySqlCommand(updateStatement, connection);
-            updateCommand.Parameters.AddWithValue("@OldCustomerID", oldCustomer.CustomerID);
             updateCommand.Parameters.AddWithValue("@OldName", oldCustomer.Name);
             updateCommand.Parameters.AddWithValue("@OldAddress", oldCustomer.Address);
             updateCommand.Parameters.AddWithValue("@OldCity", oldCustomer.City);
             updateCommand.Parameters.AddWithValue("@OldState", oldCustomer.State);
             updateCommand.Parameters.AddWithValue("@OldZipCode", oldCustomer.ZipCode);
-            updateCommand.Parameters.AddWithValue("@NewCustomerID", oldCustomer.CustomerID);
-            updateCommand.Parameters.AddWithValue("@NewName", oldCustomer.Name);
-            updateCommand.Parameters.AddWithValue("@NewAddress", oldCustomer.Address);
-            updateCommand.Parameters.AddWithValue("@NewCity", oldCustomer.City);
-            updateCommand.Parameters.AddWithValue("@NewState", oldCustomer.State);
-            updateCommand.Parameters.AddWithValue("@NewZipCode", oldCustomer.ZipCode);
+            updateCommand.Parameters.AddWithValue("@NewName", newCustomer.Name);
+            updateCommand.Parameters.AddWithValue("@NewAddress", newCustomer.Address);
+            updateCommand.Parameters.AddWithValue("@NewCity", newCustomer.City);
+            updateCommand.Parameters.AddWithValue("@NewState", newCustomer.State);
+            updateCommand.Parameters.AddWithValue("@NewZipCode", newCustomer.ZipCode);
             try
             {
                 connection.Open();
                 // open the connection
                 // execute the command
                 if (updateCommand.ExecuteNonQuery() == 1)
-                { return true; }
+                { return true;}
                 // if the number of records returned = 1, return true otherwise return false
             }
             catch (MySqlException ex)
