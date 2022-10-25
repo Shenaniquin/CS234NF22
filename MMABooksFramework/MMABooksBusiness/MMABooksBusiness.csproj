@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MMABooksDB\MMABooksDB.csproj" />
+    <ProjectReference Include="..\MMABooksProps\MMABooksProps.csproj" />
+    <ProjectReference Include="..\MMABooksTools\MMABooksTools.csproj" />
+  </ItemGroup>
+
+</Project>
