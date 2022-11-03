@@ -11,4 +11,10 @@
     <ProjectReference Include="..\MMABooksTools\MMABooksTools.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="mySqlSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
