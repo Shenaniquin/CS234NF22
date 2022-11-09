@@ -1,10 +1,10 @@
-﻿using MMABooksEFClasses.Models;
+﻿using MMABooksEFClasses.MarisModels;
 using System;
 using System.Collections.Generic;
 
-namespace MMABooksEFClasses.MarisModels
+namespace MMABooksEFClasses.Models
 {
-    public partial class Invoicelineitems
+    public partial class Invoicelineitem
     {
         public int InvoiceId { get; set; }
         public string ProductCode { get; set; }
@@ -15,7 +15,7 @@ namespace MMABooksEFClasses.MarisModels
         {
             return InvoiceId + ", " + ProductCode + ", " + UnitPrice + ", " + Quantity + ", " + ItemTotal;
         }
-        public virtual Invoices Invoice { get; set; }
-        public virtual Products ProductCodeNavigation { get; set; }
+        public virtual Invoice Invoice { get; set; }
+        public virtual Product ProductCodeNavigation { get; set; }
     }
 }

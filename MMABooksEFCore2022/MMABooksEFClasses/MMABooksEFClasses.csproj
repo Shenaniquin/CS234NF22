@@ -27,7 +27,7 @@
     <None Update="mySqlSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="mySqlSettings.json">
+    <None Update="mySqlSettingsExample.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

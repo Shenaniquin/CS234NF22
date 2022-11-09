@@ -15,6 +15,7 @@ namespace MMABooksEFClasses.MarisModels
         public decimal UnitPrice { get; set; }
         public int OnHandQuantity { get; set; }
 
+        //add to string
         public virtual ICollection<Invoicelineitems> Invoicelineitems { get; set; }
     }
 }
