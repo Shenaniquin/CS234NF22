@@ -3,8 +3,9 @@ using System.Linq;
 using System;
 
 using NUnit.Framework;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace MMABooksTests
 {
@@ -13,28 +14,43 @@ namespace MMABooksTests
     {
         
         MMABooksContext dbContext;
+        Product? p;
+        List<Product>? products;
 
         [SetUp]
         public void Setup()
         {
             dbContext = new MMABooksContext();
-            dbContext.Database.ExecuteSqlRaw("call usp_testingResetData()");
+            dbContext.Database.ExecuteSqlRaw("call usp_testingResetProductData()");
         }
 
         [Test]
         public void GetAllTest()
         {
+            products = dbContext.Products.OrderBy(p => p.ProductCode).ToList();
+            Assert.AreEqual(16, products.Count);
+            Assert.AreEqual("A4CS", products[0].ProductCode);
+            PrintAll(products);
         }
 
         [Test]
         public void GetByPrimaryKeyTest()
         {
+            p = dbContext.Products.Find("A4CS");
+            Assert.IsNotNull(p);
+            Assert.AreEqual(4637, p.OnHandQuantity);
+            Console.WriteLine(p);
         }
 
         [Test]
         public void GetUsingWhere()
         {
+            
             // get a list of all of the products that have a unit price of 56.50
+            products = dbContext.Products.Where(p => p.UnitPrice == 56.50).OrderBy(p => p.ProductCode).ToList();
+            Assert.AreEqual(7, products.Count);
+            Assert.AreEqual("A4CS", products[0].ProductCode);
+            PrintAll(products);
         }
 
         [Test]
@@ -54,19 +70,42 @@ namespace MMABooksTests
         [Test]
         public void DeleteTest()
         {
-
+            p = dbContext.Products.Find("A4CS");
+            dbContext.Products.Remove(p);
+            dbContext.SaveChanges();
+            Assert.IsNull(dbContext.Products.Find("A4CS"));
         }
 
         [Test]
         public void CreateTest()
         {
-
+            p = new Product();
+            p.ProductCode = "AAAA";
+            p.Description = "test";
+            p.UnitPrice = 45.45;
+            p.OnHandQuantity = 1234;
+            dbContext.Products.Add(p);
+            dbContext.SaveChanges();
+            Console.WriteLine(p);
+            Assert.AreEqual("AAAA", p.ProductCode);
         }
 
         [Test]
         public void UpdateTest()
         {
-
+            p = dbContext.Products.Find("A4CS");
+            p.OnHandQuantity = 1;
+            dbContext.Products.Update(p);
+            dbContext.SaveChanges();
+            Assert.AreEqual(1, p.OnHandQuantity);
+            Console.WriteLine(p);
+        }
+        public void PrintAll(List<Product> products)
+        {
+            foreach(Product p in products)
+            {
+                Console.WriteLine(p);
+            }
         }
        
     }
