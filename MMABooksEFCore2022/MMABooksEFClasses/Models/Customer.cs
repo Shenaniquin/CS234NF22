@@ -21,7 +21,7 @@ namespace MMABooksEFClasses.Models
         {
             return CustomerId + ", " + Name + ", " + Address + ", " + City + ", " + State + ", " + ZipCode;
         }
-        public virtual State State { get; set; }
+        public virtual State? State { get; set; }
 
         public virtual ICollection<Invoice> Invoices { get; set; }
     }

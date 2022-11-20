@@ -1,5 +1,4 @@
-﻿using MMABooksEFClasses.MarisModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace MMABooksEFClasses.Models
